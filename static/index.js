@@ -28,7 +28,7 @@ const options = {
 			Host: "smtp.qq.com",
 			Username: "1291481728@qq.com",
 			Password: "pypxeeydkquzhbde",
-			To: '',
+			To: data.email,
 			From: "1291481728@qq.com",
 			Subject: data.input,
 			Body: data.textarea,
