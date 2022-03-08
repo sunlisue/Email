@@ -3,37 +3,43 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Email</title>
-		<link id="favicon" rel="shortcut icon" href="https://images.cnblogs.com/cnblogs_com/blogs/604875/galleries/1769394/o_210712054306yjtp.png" type="image/svg+xml">
-		<link rel="stylesheet" type="text/css" href="./static/loading.css" />
+		<link id="favicon" rel="shortcut icon" href="./static/image/o_210712054306yjtp.png" type="image/svg+xml">
+		<link rel="stylesheet" type="text/css" href="./static/css/loading.css" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<!-- VH to solve the influence of H5 soft keyboard -->
+		<meta name="viewport" id="viewportMeta">
 	</head>
 	<body>
-		<div id="app" v-cloak>
-			<div class="form">
-				<div class="title">To email</div>
-				<input placeholder="Please input the email" v-model="data.email" class="input" />
-				<div class="title">Title</div>
-				<input placeholder="Please input the title" v-model="data.input" class="input" />
-				<div class="title">Content</div>
-				<textarea placeholder="Please input the content" class="textarea" v-model="data.textarea"></textarea>
-				<div class="title">UpFile</div>
-				<!-- UpFile -->
-				<div class="file-btn">
-					<span>AddFile</span>
-					<input type="file" multiple title="Please select file" @change="fileEvent" id="files" />
-				</div>
-				<div class="file">
-					<div v-for="(item,index) in data.fileList" :key="index">
-						<div class="file-name">{{item.name}}</div>
-						<div class="close" @click="dele(index)">Delete</div>
+		<div id="app" v-cloak @mounted="mounted(this)">
+			<!-- Scroll -->
+			<div class="form-scroll">
+				<div class="form">
+					<div class="title">To email</div>
+					<input placeholder="Please input the email" v-model="data.email" class="input" />
+					<div class="title">Title</div>
+					<input placeholder="Please input the title" v-model="data.title" class="input" />
+					<div class="title">Content</div>
+					<textarea placeholder="Please input the content" class="content" v-model="data.content"></textarea>
+					<div class="title">UpFile</div>
+					<!-- UpFile -->
+					<div class="file-btn">
+						<span>AddFile</span>
+						<input type="file" multiple title="Please select file" @change="fileEvent" id="files" />
 					</div>
-				</div>
-				<div class="file-btn-send">
-					<div class="file-btn" @click="send">Send</div>
-				</div>
+					<div class="file">
+						<div v-for="(item,index) in data.fileList" :key="index">
+							<div class="file-name">{{item.name}}</div>
+							<div class="close" @click="dele(index)">Delete</div>
+						</div>
+					</div>
+					<div class="file-btn-send">
+						<div class="file-btn" @click="send">Send</div>
+					</div>
+				</div>				
 			</div>
-			<!-- loading -->
-			<div class="loading" v-show="data.loading">
+			
+			<!-- Loading -->
+			<div class="loading" v-if="data.loading">
 				<svg viewBox="0 0 178 40" width="178" height="40">
 					<path class="air" d="M 46 16.5 h -20 a 8 8 0 0 1 0 -16" fill="none" stroke="#E85725"
 						stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
@@ -206,7 +212,7 @@
 				</svg>
 			</div>
 			<!-- footer -->
-			<div class="footer">
+			<div class="footer" id="footer">
 				<span>
 					<span>Copyright © 2021 </span>
 					<span class="span" @click="aHref">小泽沐忧声</span>
@@ -214,7 +220,7 @@
 				<span>Powered by you 🧦 Theme in smtp</span>
 			</div>
 		</div>
-		<script src="./static/smtp.js"></script>
-		<script type="module" src="./static/index.js"></script>
+		<script src="./static/js/smtp.js"></script>
+		<script type="module" src="./static/js/index.js"></script>
 	</body>
 </html>
